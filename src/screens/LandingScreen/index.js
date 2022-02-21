@@ -1,9 +1,12 @@
 import * as React from 'react';
-import {Text, View, TextInput,Button, StyleSheet} from 'react-native';
+import {Text, View,CheckBox, TextInput,Button, StyleSheet} from 'react-native';
 import {useState, useEffect} from 'react'
 import axios from 'axios';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 
 function LandingScreen({navigation}) {
@@ -15,6 +18,9 @@ const [departureDate, setDepartureDate] = useState('');
 const [passenger, setPassenger] = useState('');
 const [db, setDb] = useState([]);
 const [apiInitial, setApiInitial] = useState('');
+const [startDate, setStartDate] = useState(new Date());
+  const [isSelected, setSelection] = useState(false);
+
 
 useEffect(()=>{
 
@@ -79,12 +85,20 @@ db.map((item)=>(
  
 */}
 
+<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+
 <TextInput
  style={styles.input}
         onChangeText={onChangeText}
  placeholder="Passenger(s)"
         value={text}
       />
+
+ <CheckBox
+          value={isSelected}
+          onValueChange={setSelection}
+          style={styles.checkbox}
+        />
 
 </View>
 
