@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "b1e77746-9307-4d3b-9914-def6e6a7c24a",
+		"name": "ConnectPay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retailer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\" : \"Manindra\",\n    \"lastName\": \"Tiwary\",\n    \"outletName\": \"Some Outlet\",\n    \"emailID\": \"manindra@homzhub.com\",\n    \"mobile\": \"+91-8877446633\",\n    \"dob\": \"20-07-1975 00:00:00\",\n    \"bbpsid\": \"AAAAAAA\",\n    \"dmtStatusShow\": true,\n    \"irctcid\": \"BBBBBBB\",\n    \"tpin\": 12345,\n    \"pkgtype\": \"Some Package\",\n    \"fcleardate\": \"01-01-2000 00:00:00 AM\",\n    \"terminalid\": \"T12345\",\n    \"depbank\": \"MY Bank\",\n    \"payatmid\": \"MyPayTMId\",\n    \"paymobile\": \"MYPayMobile\",\n    \"payamount\": 0.00,\n    \"paydate\": \"01-01-2000 00:00:00 AM\",\n    \"paymentid\": \"paymentid\",\n    \"paymenttype\": \"paymenttype\",\n    \"longitude\": 78.12435,\n    \"latittude\": 21.12345,\n    \"wBalance\": 100.00,\n    \"aBalance\": 1000.00,\n    \"epagentid\": \"epagentid\",\n    \"gender\": \"gender\",\n    \"yblagentid\": \"yblagentid\",\n    \"twoFaExpireTime\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/retailer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"retailer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchBus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailerId\": 2,\n    \"providerId\": 1,\n    \"origin\" : 10,\n    \"destination\": 1,\n    \"departure\": \"05-02-2022\",\n    \"noOfPassengers\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/searchbus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"searchbus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"APIProviderId\": 1,\n    \"JourneyBookingRefeNo\": \"100943012675\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/bookticket/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"bookticket",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"API Provider Id\": 1,\n    \"Address\" : \"Test Address\",\n    \"Ages\" : \"36\",\n    \"Boarding Id\" : \"11\",\n    \"Boarding Point Details\" : \"Zaheerabad\",\n    \"Bus Type Name\" : \"SeaterSleeper AC Espano Divo Air Suspension (2+2)\",\n    \"Cancellation Policy\" : \"6:-1:100:0;24:-1:30:0;0:48:15:0\",\n    \"City\" : \"Hyderabad\",\n    \"Convenience Fee\": \"0\",\n    \"Departure Time\": \"02:00 PM\",\n    \"Destination Id\": \"109\",\n    \"Destination Name\": \"Bangalore\",\n    \"Display Name\": \"Rise Travels one\",\n    \"Dropping Id\": \"268\",\n    \"Dropping Point Details\": \"VRL Work Shop\",\n    \"EmailId\": \"test@gmail.com\",\n    \"Fares\": \"400\",\n    \"Genders\": \"M\",\n    \"IdCardIssuedBy\": \"Gov\",\n    \"IdCardNo\": \"142341789\",\n    \"IdCardType\": \"PAN_CARD\",\n    \"Journey Date\": \"02-02-2022\",\n    \"MobileNo\": \"9999999999\",\n    \"Names\": \"Guru\",\n    \"No of Seats\": \"2\",\n    \"Operator\": \"Orange Travels\",\n    \"Partial Cancellation Allowed\": true,\n    \"PostalCode\": \"500035\",\n    \"Provider\": \"+rfVawweNEABIDWJVZMKFA==\",\n    \"SeatNos\": \"2\",\n    \"ServiceCharge\": \"0.00\",\n    \"Servicetax\": \"60\",\n    \"Source Id\": \"100\",\n    \"Source Name\" : \"Hyderabad\",\n    \"State\": \"Telangana\",\n    \"Titles\": \"Mr\",\n    \"Trip Id\": \"18\",\n    \"Trip Type\": \"ONE_WAY\",\n    \"UserType\": 5,\n    \"Travellers\" : [\n        {\n            \"Title\": \"Mr\",\n            \"Traveller Name\": \"Manindra Kumar Tiwary\",\n            \"Sex\": \"M\",\n            \"Age\": 46,\n            \"Seat No\": 1,\n            \"Fare\": 450,\n            \"Service Tax\": 60,\n            \"Service Charge\" : 0.00\n        },\n        {\n            \"Title\": \"Ms\",\n            \"Traveller Name\": \"Nisah Tiwary\",\n            \"Sex\": \"F\",\n            \"Age\": 40,\n            \"Seat No\": 2,\n            \"Fare\": 450,\n            \"Service Tax\": 60,\n            \"Service Charge\" : 0.00\n        }\n    ],\n    \"Traveller Contact Information\": {\n        \"Mobile Number\": \"8877446633\",\n        \"Email\": \"manindra@homzhub.com\",\n        \"Send SMS\": true,\n        \"Send Email\": false,\n        \"Name Title\": \"Mr\",\n        \"Name\": \"Manindra\",\n        \"Address\": \"Some Address\",\n        \"Town\": \"Some Town\",\n        \"State\": \"Telangana\",\n        \"Pin Code\": \"8888888\",\n        \"ID Card No\": \"ABCD\",\n        \"ID Card Type\": \"PAN_CARD\",\n        \"ID Card Issued By\": \"Gov\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/blockticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"blockticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SeatLayout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tripId\": \"18\",\n    \"sourceId\": \"100\",\n    \"destinationId\": \"109\",\n    \"journeyDate\": \"02-02-2022\",\n    \"tripType\": \"1\",\n    \"userType\": \"5\",\n    \"provider\": \"+rfVawweNEABIDWJVZMKFA==\",\n    \"travelOPerator\": \"Orange Travels\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/getSeatLayout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"getSeatLayout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BusSource",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailerId\": 1,\n    \"origin\" : 1,\n    \"destination\": 10,\n    \"departure\": \"02-02-2022\",\n    \"returnDate\": \"05-02-2022\",\n    \"noOfPassengers\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/apiProviderBusSource/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"apiProviderBusSource",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshMasterBusSource",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/refreshBusSourceMaster",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"refreshBusSourceMaster"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"i2space\",\n    \"baseUrl\": \"http://webapi.i2space.co.in/Buses/\",\n    \"consumerKey\": \"B16ED3AD12CF1C9AB3D805F3AADB0F4F0E0659AB\",\n    \"consumerSecret\": \"86C679DB2D94A88EFA7D58AA13D05DE7160D9558\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/bussource/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"bussource",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiProviderBusType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"providerBusTypeId\" : 1,\n    \"providerBusTypedesc\" : \"AC Semi-Sleeper Provider 1\",\n    \"provider\": 2,\n    \"busType\": 2\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/providerbustype/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"providerbustype",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectPayBookingStatus",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"Failed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/connectpaybookingstatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"connectpaybookingstatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConnectPayBusType",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\" : \"Non-AC Sleeper\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/masterdata/connectPayBusType",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"masterdata",
+						"connectPayBusType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancellationDetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailerId\": 1,\n    \"tripType\": \"ONE_WAY\",\n    \"API Provider Id\" : 1,\n    \"ReferenceNo\": \"Ora_2317847\",\n    \"SeatNos\": 3,\n    \"EmailId\": \"manindra@homzhub.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/ticketcancellationdetails/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"ticketcancellationdetails",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailerId\": 1,\n    \"tripType\": \"ONE_WAY\",\n    \"API Provider Id\" : 1,\n    \"ReferenceNo\": \"Ora_2317847\",\n    \"SeatNos\": 3,\n    \"EmailId\": \"manindra@homzhub.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/cancelticket/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"cancelticket",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BookingDetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailerId\": 1,\n    \"tripType\": \"ONE_WAY\",\n    \"API Provider Id\": 1,\n    \"ReferenceNo\": \"100522012677\",\n    \"Type\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bus/getbookingdetails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bus",
+						"getbookingdetails"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
