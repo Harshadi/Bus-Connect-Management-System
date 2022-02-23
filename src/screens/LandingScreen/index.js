@@ -1,78 +1,109 @@
-import * as React from 'react';
-import {Text, View,CheckBox, TextInput,Button, StyleSheet} from 'react-native';
-import {useState, useEffect} from 'react'
-import axios from 'axios';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import Stack from '@mui/material/Stack';
+import * as React from "react";
+import {
+	Text,
+	View,
+	CheckBox,
+	TextInput,
+	Button,
+	StyleSheet,
+} from "react-native";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import Stack from "@mui/material/Stack";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
+function LandingScreen({ navigation }) {
+	const [text, setText] = useState("");
+	const [origin, setOrigin] = useState("");
+	const [destination, setDestination] = useState("");
+	const [departureDate, setDepartureDate] = useState("");
+	const [passenger, setPassenger] = useState("");
+	const [db, setDb] = useState([]);
+	const [apiInitial, setApiInitial] = useState("");
+	const [startDate, setStartDate] = useState(new Date());
+	const [isSelected, setSelection] = useState(false);
+	const [originKey, setOriginKey] = useState("");
+	const [destinationKey, setDestinationKey] = useState("");
+	const [departure, setDeparture] = useState();
+	const [noOfPassengers, setNoOfPassengers] = useState(0);
 
-function LandingScreen({navigation}) {
+	useEffect(() => {
+		axios
+			.get(`http://3.109.160.178:8082/api/v1/bus/bussource/${apiInitial}`)
+			.then((reponse) => {
+				setDb(reponse.data.Responses);
+			});
+	}, [apiInitial]);
 
-const [text, setText] = useState('');
-const [origin, setOrigin] = useState('');
-const [destination, setDestination] = useState('');
-const [departureDate, setDepartureDate] = useState('');
-const [passenger, setPassenger] = useState('');
-const [db, setDb] = useState([]);
-const [apiInitial, setApiInitial] = useState('');
-const [startDate, setStartDate] = useState(new Date());
-  const [isSelected, setSelection] = useState(false);
+	return (
+		<View style={style.outerBox}>
+			<View style={style.topBar}></View>
+			<View style={style.topNavBar}></View>
+			<Text style={style.topHeading}>Book Your Bus</Text>{" "}
+			<View style={style.mainContainer}>
+				<View style={style.inputContainer}>
+					<View style={style.inputField1}>
+						<label>
+							<Text style={style.label}>Origin </Text>
+							<View>
+								<input
+									required
+									list="browsers"
+									name="myBrowser"
+									onChange={(e) => {
+										setOrigin(e.target.value);
+										setApiInitial(e.target.value);
+										db.map((item) => {
+											console.log(item);
 
+											if (item.name == e.target.value) {
+												setOriginKey(item.id);
+											}
+										});
+									}}
+								/>
+							</View>
+						</label>
 
-useEffect(()=>{
+						<datalist id="browsers">
+							{db.map((item) => (
+								<option value={item.name} key={item.key} />
+							))}
+						</datalist>
+					</View>
 
-axios
-.get(`http://3.109.160.178:8082/api/v1/bus/bussource/${apiInitial}`)
-.then((reponse)=>{
+					<View style={style.inputField1}>
+						<label>
+							<Text style={style.label}>Destination</Text>
+							<View>
+								<input
+									list="browsers"
+									name="myBrowser"
+									onChange={(e) => {
+										setDestination(e.target.value);
+										setApiInitial(e.target.value);
+										db.map((item) => {
+											console.log(item);
 
-setDb(reponse.data.Responses)
-})
+											if (item.name == e.target.value) {
+												setDestinationKey(item.id);
+											}
+										});
+									}}
+								/>
+							</View>
+						</label>
 
+						<datalist id="browsers">
+							{db.map((item) => (
+								<option value={item.name} key={item.key} />
+							))}
+						</datalist>
+					</View>
 
-}, [apiInitial]);
-
-
-const onChangeText=()=>{
-
-console.log('text enter')
-}
-
-  return (
-<View>
-<View style={{backgroundColor: '#F5F5F5', height: 1000+'em'}}>
-  <Text style ={styles.bookYourBus}>
-Book Your Bus
-</Text>
-
-<View style={styles.routeCard}>
-<Text style={{textAlign: 'left', marginLeft: 10, size: 16, color: '#483191', opacity: 1,marginTop: 10,  width:47, height: 22, font: 'normal'+'normal'+ 600+16+'Open Sans'}}>Origin</Text>
-<View style = {styles.inputsection}>
-
-<label>Origin
-<input list="browsers" name="myBrowser" onChange={((e)=>{setOrigin(e.target.value); setApiInitial(e.target.value)})}/></label>
-<datalist id="browsers">
-  {
-db.map((item)=>(
-<option value={item.name} key ={item.key}/>
-
-))
-}
-</datalist>
-
-<label>Destination
-<input list="browsers" name="myBrowser" onChange={((e)=>{setDestination(e.target.value); setApiInitial(e.target.value)})}/></label>
-<datalist id="browsers">
-  {
-db.map((item)=>(
-<option value={item.name} key ={item.key}/>
-
-))
-}
-</datalist>
-{/*
+					{/*
  <Stack spacing={3}>
         <DesktopDatePicker
           label="Date desktop"
@@ -85,85 +116,162 @@ db.map((item)=>(
  
 */}
 
-<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+					<View style={style.inputField2}>
+						<Text style={style.label}>Departure Date</Text>
+						<View>
+							<DatePicker
+								required
+								selected={startDate}
+								onChange={(date) => setDeparture(date)}
+							/>
+						</View>
+					</View>
 
-<TextInput
- style={styles.input}
-        onChangeText={onChangeText}
- placeholder="Passenger(s)"
-        value={text}
-      />
+					<View style={style.inputField2}>
+						<Text style={style.label}>Passenger(s)</Text>
+						<View>
+							<TextInput
+								required
+								style={style.input}
+								value={noOfPassengers}
+								onChange={(e) => setNoOfPassengers(e.target.value)}
+							/>
+						</View>
+					</View>
 
- <CheckBox
-          value={isSelected}
-          onValueChange={setSelection}
-          style={styles.checkbox}
-        />
+					<View style={style.inputField4}>
+						<CheckBox
+							required
+							value={isSelected}
+							onValueChange={setSelection}
+							style={{}}
+						/>
+						<Text>Regional Transport Corporations</Text>
+					</View>
+				</View>
 
-</View>
-
-<Button style={{height:50+'em'}}
-onPress={(()=>{
-navigation.navigate('searchResults',{
-params: {
-origin : origin,
-destination : destination
+				<View style={style.buttonField}>
+					<Button
+						title="Search Buses"
+						style={style.searchButton}
+						onPress={() => {
+							navigation.navigate("searchResults", {
+								params: {
+									origin: origin,
+									destination: destination,
+									originKey: originKey,
+									destinationKey: destinationKey,
+									departure: departure,
+									noOfPassengers: noOfPassengers,
+								},
+							});
+						}}
+					></Button>
+				</View>
+				{/* </View> */}
+			</View>
+		</View>
+	);
 }
-})
 
-})}
->
+const style = StyleSheet.create({
+	outerBox: {
+		width: "100%",
+		height: "800px",
+		margin: "auto",
+		backgroundColor: "#F5F5F5",
+	},
+	topBar: {
+		width: "100%",
+		height: "89px",
+		opacity: "1",
+	},
+	topNavBar: {
+		width: "100%",
+		height: "40px",
+		backgroundColor: "#483191",
+		opacity: "1",
+	},
+	topHeading: {
+		height: "24px",
+		textAlign: "center",
+		marginTop: "16px",
+		marginBottom: "16px",
+		fontFamily: "Open Sans",
+		fontWeight: "bold",
+		fontSize: 18 + "px",
+		color: "#483191",
+	},
+	mainContainer: {
+		textAlign: "center",
+		backgroundColor: "#ffffff",
+		paddingTop: "32px",
+		borderRadius: "8px",
+		paddingBottom: "32px",
+		marginTop: 0,
+		marginLeft: "40px",
+		marginRight: "40px",
+	},
 
-Search Buses
-</Button>
-
-
-</View>
-
-
-
-</View>
-</View>
-  );
-}
-
-
-const styles = StyleSheet.create({
-
-bookYourBus: {
-fontFamily: 'Open Sans', 
-fontWeight: 'bold', 
-fontSize : 18+'px', 
-color: '#483191', 
-lineSpacing : 24, 
-textAlign: 'center', 
-characterSpacing: 0
-},
-routeCard:{
-top: 185,
-left: 40 ,
-width: 1286,
-height: 500,
-backgroundColor: '#FFFFFF',
-background: '#FFFFFF'+ 0+'%'+ 0+'%' +'no-repeat' +'padding-box',
-borderRadius: 8,
-textAlign: 'center',
-opacity: 1
-},
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    width: 500,
-    flex: 1
-  },
-inputsection:{
-flex: 1,
-flexDirection: 'row'
-}
+	inputContainer: {
+		flex: 1,
+		flexDirection: "row",
+	},
+	label: {
+		height: "22px",
+		fontFamily: "Open Sans",
+		fontWeight: "bold",
+		fontSize: 16 + "px",
+		color: "#483191",
+	},
+	inputField1: {
+		flex: 1,
+		marginLeft: "16px",
+		marginRight: "16px",
+		textAlign: "left",
+		width: "109px",
+	},
+	inputField2: {
+		flex: 1,
+		marginLeft: "16px",
+		marginRight: "16px",
+		textAlign: "left",
+		width: "17%",
+	},
+	inputField3: {
+		flex: 1,
+		marginLeft: "16px",
+		marginRight: "16px",
+		textAlign: "left",
+		width: "9%",
+	},
+	inputField4: {
+		flex: 1,
+		marginLeft: "16px",
+		marginRight: "16px",
+		textAlign: "left",
+		width: "24%",
+	},
+	input: {
+		height: 40,
+		borderWidth: 1,
+		paddingLeft: 10,
+		flex: 1,
+	},
+	buttonField: {
+		flex: 1,
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		marginTop: "36px",
+	},
+	searchButton: {
+		margin: "auto",
+		width: "294px",
+		height: "40px",
+		backgroundColor: "#483191",
+		borderRadius: "8px",
+	},
 });
-
-
 
 export default LandingScreen;
