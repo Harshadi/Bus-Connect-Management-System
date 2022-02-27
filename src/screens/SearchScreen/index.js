@@ -1,12 +1,4 @@
 import * as React from "react";
-import {
-	Text,
-	View,
-	CheckBox,
-	TextInput,
-	Button,
-	StyleSheet,
-} from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
@@ -14,8 +6,8 @@ import Stack from "@mui/material/Stack";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function LandingScreen({ navigation }) {
-	const [text, setText] = useState("");
+function SearchScreen({ navigation }) {
+	const [h1, seth1] = useState("");
 	const [origin, setOrigin] = useState("");
 	const [destination, setDestination] = useState("");
 	const [departureDate, setDepartureDate] = useState("");
@@ -38,16 +30,16 @@ function LandingScreen({ navigation }) {
 	}, [apiInitial]);
 
 	return (
-		<View style={style.outerBox}>
-			<View style={style.topBar}></View>
-			<View style={style.topNavBar}></View>
-			<Text style={style.topHeading}>Book Your Bus</Text>{" "}
-			<View style={style.mainContainer}>
-				<View style={style.inputContainer}>
-					<View style={style.inputField1}>
+		<div>
+			<div></div>
+			<div></div>
+			<h1>Book Your Bus</h1>{" "}
+			<div>
+				<div>
+					<div>
 						<label>
-							<Text style={style.label}>Origin </Text>
-							<View>
+							<h1>Origin </h1>
+							<div>
 								<input
 									required
 									list="browsers"
@@ -64,7 +56,7 @@ function LandingScreen({ navigation }) {
 										});
 									}}
 								/>
-							</View>
+							</div>
 						</label>
 
 						<datalist id="browsers">
@@ -72,12 +64,12 @@ function LandingScreen({ navigation }) {
 								<option value={item.name} key={item.key} />
 							))}
 						</datalist>
-					</View>
+					</div>
 
-					<View style={style.inputField1}>
+					<div>
 						<label>
-							<Text style={style.label}>Destination</Text>
-							<View>
+							<h1>Destination</h1>
+							<div>
 								<input
 									list="browsers"
 									name="myBrowser"
@@ -93,7 +85,7 @@ function LandingScreen({ navigation }) {
 										});
 									}}
 								/>
-							</View>
+							</div>
 						</label>
 
 						<datalist id="browsers">
@@ -101,7 +93,7 @@ function LandingScreen({ navigation }) {
 								<option value={item.name} key={item.key} />
 							))}
 						</datalist>
-					</View>
+					</div>
 
 					{/*
  <Stack spacing={3}>
@@ -110,50 +102,48 @@ function LandingScreen({ navigation }) {
           inputFormat="MM/dd/yyyy"
           value={value}
           onChange={handleChange}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <h1Field {...params} />}
         />
 </ Stack >
  
 */}
 
-					<View style={style.inputField2}>
-						<Text style={style.label}>Departure Date</Text>
-						<View>
+					<div>
+						<h1>Departure Date</h1>
+						<div>
 							<DatePicker
 								required
 								selected={startDate}
 								onChange={(date) => setDeparture(date)}
 							/>
-						</View>
-					</View>
+						</div>
+					</div>
 
-					<View style={style.inputField2}>
-						<Text style={style.label}>Passenger(s)</Text>
-						<View>
-							<TextInput
+					<div>
+						<h1>Passenger(s)</h1>
+						<div>
+							<textinput
 								required
-								style={style.input}
 								value={noOfPassengers}
 								onChange={(e) => setNoOfPassengers(e.target.value)}
 							/>
-						</View>
-					</View>
+						</div>
+					</div>
 
-					<View style={style.inputField4}>
-						<CheckBox
+					<div>
+						<checkbox
 							required
 							value={isSelected}
 							onValueChange={setSelection}
-							style={{}}
+							
 						/>
-						<Text>Regional Transport Corporations</Text>
-					</View>
-				</View>
+						<h1>Regional Transport Corporations</h1>
+					</div>
+				</div>
 
-				<View style={style.buttonField}>
-					<Button
+				<div>
+					<button
 						title="Search Buses"
-						style={style.searchButton}
 						onPress={() => {
 							navigation.navigate("searchResults", {
 								params: {
@@ -166,11 +156,11 @@ function LandingScreen({ navigation }) {
 								},
 							});
 						}}
-					></Button>
-				</View>
-				{/* </View> */}
-			</View>
-		</View>
+					></button>
+				</div>
+				{/* </div> */}
+			</div>
+		</div>
 	);
 }
 
@@ -194,7 +184,7 @@ const style = StyleSheet.create({
 	},
 	topHeading: {
 		height: "24px",
-		textAlign: "center",
+		h1Align: "center",
 		marginTop: "16px",
 		marginBottom: "16px",
 		fontFamily: "Open Sans",
@@ -203,7 +193,7 @@ const style = StyleSheet.create({
 		color: "#483191",
 	},
 	mainContainer: {
-		textAlign: "center",
+		h1Align: "center",
 		backgroundColor: "#ffffff",
 		paddingTop: "32px",
 		borderRadius: "8px",
@@ -228,28 +218,28 @@ const style = StyleSheet.create({
 		flex: 1,
 		marginLeft: "16px",
 		marginRight: "16px",
-		textAlign: "left",
+		h1Align: "left",
 		width: "109px",
 	},
 	inputField2: {
 		flex: 1,
 		marginLeft: "16px",
 		marginRight: "16px",
-		textAlign: "left",
+		h1Align: "left",
 		width: "17%",
 	},
 	inputField3: {
 		flex: 1,
 		marginLeft: "16px",
 		marginRight: "16px",
-		textAlign: "left",
+		h1Align: "left",
 		width: "9%",
 	},
 	inputField4: {
 		flex: 1,
 		marginLeft: "16px",
 		marginRight: "16px",
-		textAlign: "left",
+		h1Align: "left",
 		width: "24%",
 	},
 	input: {
@@ -274,4 +264,4 @@ const style = StyleSheet.create({
 	},
 });
 
-export default LandingScreen;
+export default SearchScreen;

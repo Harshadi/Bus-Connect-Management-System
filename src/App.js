@@ -1,19 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
-import {Text} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Router from './config/router';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useRoutes,
+} from "react-router-dom";
+import SearchScreen from './screens/SearchScreen';
+import SearchResults from './screens/SearchResults';
 
-function App() {
+const App = () => {
+  let routes = useRoutes([
+    { path: "/", element: <SearchScreen /> },
+    { path: "SearchResults", element: <SearchResults /> },
+  ]);
+  return routes;
+};
+
+const AppWrapper = () => {
   return (
-   <NavigationContainer>
-      <SafeAreaProvider>
-        <Router />
-      </SafeAreaProvider>
-    </NavigationContainer>
+    <Router>
+      <App />
+    </Router>
   );
-}
+};
 
-export default App;
+export default AppWrapper;
