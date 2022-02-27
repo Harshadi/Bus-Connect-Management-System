@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Text, View, TextInput, Button, Image, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import arrow from "../../assets/Icon feather-arrow-right.svg";
 import calendar from "../../assets/Icon awesome-calendar-alt.svg";
+import { useLocation } from "react-router-dom";
 
-function SearchResults({ route, navigation }) {
+function SearchResults() {
+	const location = useLocation();
 	const [text, setText] = useState("");
 	const [origin, setOrigin] = useState("");
 	const [destination, setDestination] = useState("");
@@ -13,20 +14,31 @@ function SearchResults({ route, navigation }) {
 	const [passenger, setPassenger] = useState("");
 	const [db, setDb] = useState([]);
 	const [apiInitial, setApiInitial] = useState("");
-	const { params } = route.params;
 	const [originKey, setOriginKey] = useState("");
 	const [destinationKey, setDestinationKey] = useState("");
 	const [departure, setDeparture] = useState();
 	const [noOfPassengers, setNoOfPassengers] = useState(0);
 
+	const [arrivalTime, setArrivalTime] = useState("");
+	const [availableSeats, setAvailableSeats] = useState("");
+	const [busType, setBusType] = useState("");
+	const [cancellationPolicy, setCancellationPolicy] = useState("");
+	const [departureTime, setDepartureTime] = useState("");
+	const [displayName, setDisplayName] = useState("");
+	const [duration, setDuration] = useState("");
+	const [fares, setFares] = useState("");
+	const [tripID, setTripID] = useState("");
+	const [busesAvailable, setBusesAvailable] = useState("");
+	const [busDetails, setBusDetails] = useState([]);
+
 	useEffect(() => {
-		console.log(params);
-		setOrigin(params.origin);
-		setDestination(params.destination);
-		setOriginKey(params.originKey);
-		setDestinationKey(params.destinationKey);
-		setDeparture(departure);
-		setNoOfPassengers(noOfPassengers);
+		console.log(location.state);
+		setOrigin(location.state.origin);
+		setDestination(location.state.destination);
+		setOriginKey(location.state.originKey);
+		setDestinationKey(location.state.destinationKey);
+		setDeparture(location.state.departure);
+		setNoOfPassengers(location.state.noOfPassengers);
 
 		console.log("o", originKey);
 		console.log("d", destinationKey);
@@ -36,11 +48,16 @@ function SearchResults({ route, navigation }) {
 				retailerId: 1,
 				origin: originKey,
 				destination: destinationKey,
-				departure: "26-02-2022",
+				departure: "05-03-2022",
 				noOfPassengers: noOfPassengers,
 			})
 			.then((response) => {
 				console.log("post reponse", response.data);
+				setBusesAvailable(
+					response.data.Responses[0].Journey.AvailableTrips.length,
+				);
+				setBusDetails(response.data.Responses[0].Journey.AvailableTrips);
+				console.log(busesAvailable);
 			});
 	}, [originKey, destinationKey]);
 
@@ -49,62 +66,93 @@ function SearchResults({ route, navigation }) {
 	};
 
 	return (
-		<View>
-			<View style={{ backgroundColor: "#F5F5F5", height: 1000 + "em" }}>
-				<View style={styles.routeCard}>
-					<View style={styles.inputsection}>
-						<Text>{params.origin}</Text>
-						<img src={arrow} style={{ width: 40, height: 14, marginTop: 4 }} />
-						<Text>{params.destination}</Text>
+		<div>
+			<div>
+				<div>
+					<div>
+						<h1>{location.state.origin}</h1>
+						<img src={arrow} />
+						<h1>{location.state.destination}</h1>
 
-						<img
-							src={calendar}
-							style={{ width: 40, height: 14, marginTop: 4 }}
-						/>
+						<img src={calendar} />
 
-						<Text style={{ marginLeft: 100 }}>Modify Search</Text>
-						<Text style={{ marginLeft: 50 }}>Bus Matrix</Text>
-						<Text style={{ marginLeft: 50 }}>Action</Text>
-					</View>
-				</View>
-			</View>
-		</View>
+						<h1>Modify Search</h1>
+						<h1>Bus Matrix</h1>
+						<h1>Action</h1>
+					</div>
+				</div>
+			</div>
+			<div>
+				<table width="100%">
+					<tr>
+						<th>Trip</th>
+						<th>00-04</th>
+						<th>04-08</th>
+						<th>08-12</th>
+						<th>12-16</th>
+						<th>16-20</th>
+						<th>20-00</th>
+					</tr>
+					<tr>
+						<td style={{ textAlign: "center" }}>Reset</td>
+						<td style={{ textAlign: "center" }}>N/A</td>
+						<td style={{ textAlign: "center" }}>N/A</td>
+						<td style={{ textAlign: "center" }}>N/A</td>
+						<td style={{ textAlign: "center" }}>N/A</td>
+						<td style={{ textAlign: "center" }}>N/A</td>
+						<td style={{ textAlign: "center" }}>N/A</td>
+					</tr>
+				</table>
+
+				<div>
+					<h2>{busesAvailable} buses available</h2>
+
+					<h2>Previous Day</h2>
+					<h2>Next Day</h2>
+				</div>
+
+				<div>
+					<table width="100%">
+						<tr>
+							<td>Transport Name</td>
+							<td>Departure</td>
+							<td>Arrival</td>
+							<td>Boarding</td>
+							<td>Drop</td>
+							<td>Fare</td>
+							<td>Bus Type</td>
+							<td>Reset All</td>
+							<td>
+								<input type="checkbox" />
+							</td>
+						</tr>
+						{busDetails.map((busDetail) => (
+							<tr>
+								<td>
+									{busDetail.displayName} <br />
+									{busDetail.availableSeats}
+								</td>
+								<td>
+									{busDetail.DepartureTime}
+									<br />
+									{busDetail.Duration}
+								</td>
+								<td>{busDetail.ArrivalTime}</td>
+								<td></td>
+								<td></td>
+								<td>{busDetail.fares}</td>
+								<td>Select</td>
+								<td>Quick Book</td>
+								<td>
+									<input type="checkbox" />
+								</td>
+							</tr>
+						))}
+					</table>
+				</div>
+			</div>
+		</div>
 	);
 }
-
-const styles = StyleSheet.create({
-	bookYourBus: {
-		fontFamily: "Open Sans",
-		fontWeight: "bold",
-		fontSize: 18 + "px",
-		color: "#483191",
-		lineSpacing: 24,
-		textAlign: "center",
-		characterSpacing: 0,
-	},
-	routeCard: {
-		top: 185,
-		left: 40,
-		width: 1286,
-		height: 500,
-		backgroundColor: "#FFFFFF",
-		background: "#FFFFFF" + 0 + "%" + 0 + "%" + "no-repeat" + "padding-box",
-		borderRadius: 8,
-		textAlign: "center",
-		opacity: 1,
-	},
-	input: {
-		height: 40,
-		margin: 12,
-		borderWidth: 1,
-		padding: 10,
-		width: 500,
-		flex: 1,
-	},
-	inputsection: {
-		flex: 1,
-		flexDirection: "row",
-	},
-});
 
 export default SearchResults;
