@@ -7,11 +7,13 @@ import {
 } from "react-router-dom";
 import SearchScreen from './screens/SearchScreen';
 import SearchResults from './screens/SearchResults';
+import PaxContactDetails from './screens/PaxContactDetails';
 
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <SearchScreen /> },
     { path: "SearchResults", element: <SearchResults /> },
+    { path: "PaxContactDetails", element: <PaxContactDetails/>},
   ]);
   return routes;
 };

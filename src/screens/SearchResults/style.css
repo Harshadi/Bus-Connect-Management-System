@@ -1,0 +1,324 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+.outer-box {
+  display: block;
+  margin: auto;
+  font-family: "Source Sans Pro", sans-serif;
+
+  /* width: 1366px; */
+  height: 820px;
+  /* UI Properties */
+  background: #f5f5f5 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.top-bar {
+  display: inline-block;
+  width: 100%;
+  height: 89px;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.nav-bar {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  /* UI Properties */
+  background: #483191 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.main-container {
+  text-align: center;
+  display: block;
+  width: 90%;
+  margin: 16px auto 0 auto;
+  position: relative;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  opacity: 1;
+}
+.state-bar {
+  display: inline-block;
+  height: 70px;
+}
+.values {
+  position: absolute;
+  left: 16px;
+  top: 22px;
+}
+.val-tg-txt {
+  height: 24px;
+  /* UI Properties */
+  text-align: left;
+  font: normal normal bold 18px/24px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  opacity: 1;
+}
+.val-tg-img {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.cal-img {
+  position: relative;
+  top: 2px;
+  margin-left: 32px;
+}
+.val-tg-date {
+  height: 24px;
+  /* UI Properties */
+  text-align: left;
+  font: normal normal 600 18px/24px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  opacity: 1;
+}
+.state-bar-hr {
+  margin: 0;
+}
+.val-btns {
+  position: absolute;
+  right: 8px;
+  top: 15px;
+}
+.val-tg-btn {
+  padding-left: 24px;
+  padding-right: 24px;
+  height: 40px;
+  /* UI Properties */
+  background: #efefef 0% 0% no-repeat padding-box;
+  border: none;
+  border-radius: 8px;
+  margin: 0 8px 0 8px;
+  opacity: 1;
+}
+.val-tg-bt-txt {
+  height: 22px;
+  text-align: center;
+  font: normal normal 600 16px/22px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  opacity: 1;
+}
+.trip-bar {
+}
+.top-trip-row {
+  height: 46px;
+  margin-top: 0;
+  /* UI Properties */
+  background: #fafafa 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.trip-tag-name {
+  height: 19px;
+  width: 56px;
+  /* UI Properties */
+  text-align: center;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+}
+.trip-tag-type {
+  width: 36px;
+  height: 25px;
+  padding: 5px 10px 0px 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* UI Properties */
+  background: #d2c7f0 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
+}
+.trip-tag-tp-txt {
+  height: 19px;
+  /* UI Properties */
+  text-align: center;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  opacity: 1;
+}
+.trip-rst-btn {
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 30px;
+  /* UI Properties */
+  background: #483191 0% 0% no-repeat padding-box;
+  border: none;
+  border-radius: 4px;
+  opacity: 1;
+}
+.lft-aln-srt-btn {
+  text-align: left;
+}
+.trip-rst-txt {
+  height: 19px;
+  /* UI Properties */
+  text-align: center;
+  margin-top: 14px;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #909090;
+  opacity: 1;
+}
+.rst-btn-txt {
+  width: 38px;
+  height: 19px;
+  /* UI Properties */
+  text-align: center;
+  margin-top: 8px;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.trip-row-2 {
+  height: 40px;
+}
+.seperator-bar {
+  width: 100%;
+  height: 46px;
+  position: relative;
+  /* UI Properties */
+  background: #483191 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.avl-bus-lbl {
+  height: 24px;
+  /* UI Properties */
+  text-align: left;
+  font: normal normal bold 18px/24px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  position: absolute;
+  left: 16px;
+  top: 10px;
+}
+.sep-lft-btns {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+}
+
+.sep-lft-btn {
+  height: 19px;
+  /* UI Properties */
+  text-align: left;
+  margin-left: 8px;
+  margin-right: 8px;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #d2c7f0;
+  opacity: 1;
+}
+.sep-lft-btn-txt {
+  position: relative;
+  bottom: 7px;
+  margin-right: 8px;
+}
+.sort-op-avl {
+  height: 46px;
+  /* UI Properties */
+  background: #fafafa 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.sort-lbl-txt {
+  height: 19px;
+  /* UI Properties */
+  text-align: left;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  opacity: 1;
+}
+.bus-det-row {
+  width: 100%;
+  height: 88px;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+  border-bottom: 1px solid #d2c7f0;
+}
+.bus-det-div {
+  text-align: left;
+  padding-left: 16px;
+}
+.bus-serv-name {
+  height: 22px;
+  /* UI Properties */
+  text-align: left;
+  font: normal normal bold 16px/22px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #483191;
+  opacity: 1;
+  display: block;
+  margin-bottom: 0;
+}
+table {
+  border-collapse: collapse;
+}
+
+.bus-serv-type {
+  /* UI Properties */
+  text-align: left;
+  margin-top: 0;
+  display: block;
+  font: normal normal 600 12px/17px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #9b9b9b;
+  opacity: 1;
+}
+.bus-seats-avl {
+  text-align: left;
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #454545;
+  opacity: 1;
+  margin-top: 10px;
+}
+.bus-det-dept {
+  text-align: left;
+}
+.bus-det-box {
+  display: block;
+  height: 78px;
+  text-align: left;
+  padding-top: 10px;
+  width: 100%;
+}
+.bus-det-txt-n {
+  height: 19px;
+  /* UI Properties */
+  font: normal normal 600 14px/19px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #454545;
+  opacity: 1;
+  display: block;
+  margin-bottom: 0;
+}
+.bus-det-txt-s {
+  height: 17px;
+  margin-top: 0;
+  /* UI Properties */
+  display: block;
+  text-align: left;
+  font: normal normal 600 12px/17px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #9b9b9b;
+  opacity: 1;
+}
+.bus-det-txt-r {
+  height: 17px;
+  /* UI Properties */
+  display: block;
+  margin-top: 12px;
+  text-align: left;
+  font: normal normal 600 12px/17px "Source Sans Pro";
+  letter-spacing: 0px;
+  color: #cb7474;
+  opacity: 1;
+}
