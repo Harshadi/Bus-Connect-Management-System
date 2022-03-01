@@ -8,7 +8,12 @@ import "./style.css";
 import avlSeatLogo from "./avl-seat.svg";
 import lftLogo from "./left-logo.svg";
 import rightLogo from "./right-logo.svg";
+import { useNavigate } from "react-router-dom";
+
+
+
 function SearchResults() {
+  const navigate = useNavigate();
   const location = useLocation();
   const [text, setText] = useState("");
   const [origin, setOrigin] = useState("");
@@ -34,41 +39,35 @@ function SearchResults() {
   const [busesAvailable, setBusesAvailable] = useState("");
   const [busDetails, setBusDetails] = useState([]);
 
-  useEffect(() => {
-    // console.log(location.state);
-    // setOrigin(location.state.origin);
-    // setDestination(location.state.destination);
-    // setOriginKey(location.state.originKey);
-    // setDestinationKey(location.state.destinationKey);
-    // setDeparture(location.state.departure);
-    // setNoOfPassengers(location.state.noOfPassengers);
-    setOrigin("Hyderabad");
-    setDestination("banglore");
-    setOriginKey(1);
-    setDestinationKey(10);
-    setDeparture("05-03-2022");
-    setNoOfPassengers(2);
-    setBusDetails([{}, {}, {}]);
-    console.log("o", originKey);
-    console.log("d", destinationKey);
+ useEffect(() => {
+		console.log(location.state);
+		setOrigin(location.state.origin);
+		setDestination(location.state.destination);
+		setOriginKey(location.state.originKey);
+		setDestinationKey(location.state.destinationKey);
+		setDeparture(location.state.departure);
+		setNoOfPassengers(location.state.noOfPassengers);
 
-    // axios
-    //   .post("http://3.109.160.178:8082/api/v1/bus/searchbus", {
-    //     retailerId: 1,
-    //     origin: 1,
-    //     destination: 10,
-    //     departure: "05-03-2022",
-    //     noOfPassengers: 2,
-    //   })
-    //   .then((response) => {
-    //     console.log("post reponse", response.data);
-    //     setBusesAvailable(
-    //       response.data.Responses[0].Journey.AvailableTrips.length
-    //     );
-    //     setBusDetails(response.data.Responses[0].Journey.AvailableTrips);
-    //     console.log(busesAvailable);
-    //   });
-  }, [originKey, destinationKey]);
+		console.log("o", originKey);
+		console.log("d", destinationKey);
+
+		axios
+			.post("http://3.109.160.178:8082/api/v1/bus/searchbus", {
+				retailerId: 1,
+				origin: originKey,
+				destination: destinationKey,
+				departure: "05-03-2022",
+				noOfPassengers: noOfPassengers,
+			})
+			.then((response) => {
+				console.log("post reponse", response.data);
+				setBusesAvailable(
+					response.data.Responses[0].Journey.AvailableTrips.length,
+				);
+				setBusDetails(response.data.Responses[0].Journey.AvailableTrips);
+				console.log(busesAvailable);
+			});
+	}, [originKey, destinationKey]);
 
   const onChangeText = () => {
     console.log("text enter");
@@ -81,12 +80,12 @@ function SearchResults() {
       <div className="main-container">
         <div className="state-bar">
           <div className="values">
-            <span className="val-tg-txt">{origin}</span>
+            <span className="val-tg-txt">{location.state.origin}</span>
             <img className="val-tg-img" src={arrow} />
-            <span className="val-tg-txt">{destination}</span>
+            <span className="val-tg-txt">{location.state.destination}</span>
 
             <img className="val-tg-img cal-img" src={calendar} />
-            <span className="val-tg-date">{departure}</span>
+            <span className="val-tg-date">05-03-2022</span>
           </div>
           <div className="val-btns">
             <button className="val-tg-btn">
@@ -222,18 +221,18 @@ function SearchResults() {
                   <tr className="bus-det-row" key={idx}>
                     <td>
                       <div className="bus-det-div">
-                        <span className="bus-serv-name">Vishnu Travels</span>
+                        <span className="bus-serv-name">{busDetail.DisplayName}</span>
                         <span className="bus-serv-type">AC Sleeper</span>
                         <div className="bus-seats-avl">
-                          <img src={avlSeatLogo} /> 27 Seats
+                          <img src={avlSeatLogo} />{busDetail.AvailableSeats}
                         </div>
                       </div>
                     </td>
                     <td>
                       <div className="bus-det-dept">
-                        <span className="bus-det-txt-n">20:00</span>
+                        <span className="bus-det-txt-n">{busDetail.DepartureTime}</span>
                         <span className="bus-det-txt-s">
-                          14 hours : 00 mins
+                          {busDetail.Duration}
                         </span>
                         <span className="bus-det-txt-r">
                           Boarding & Drop point
@@ -242,14 +241,14 @@ function SearchResults() {
                     </td>
                     <td>
                       <div className="bus-det-box">
-                        <span className="bus-det-txt-n">10:00</span>
+                        <span className="bus-det-txt-n">{busDetail.ArrivalTime}</span>
                       </div>
                     </td>
                     <td></td>
                     <td></td>
                     <td>
                       <div className="bus-det-box">
-                        <span className="bus-det-txt-n">2400.00</span>
+                        <span className="bus-det-txt-n">{busDetail.Fares}</span>
                       </div>
                     </td>
                     <td>
