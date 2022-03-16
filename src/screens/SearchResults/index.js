@@ -5,10 +5,13 @@ import arrow from "../../assets/Icon feather-arrow-right.svg";
 import calendar from "../../assets/Icon awesome-calendar-alt.svg";
 import { useLocation } from "react-router-dom";
 import "./style.css";
-import avlSeatLogo from "./avl-seat.svg";
-import lftLogo from "./left-logo.svg";
-import rightLogo from "./right-logo.svg";
+import avlSeatLogo from "../../assets/avl-seat.svg";
+import lftLogo from "../../assets/left-logo.svg";
+import rightLogo from "../../assets/right-logo.svg";
 import { useNavigate } from "react-router-dom";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 
 
@@ -38,6 +41,15 @@ function SearchResults() {
   const [tripID, setTripID] = useState("");
   const [busesAvailable, setBusesAvailable] = useState("");
   const [busDetails, setBusDetails] = useState([]);
+const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
  useEffect(() => {
 		console.log(location.state);
@@ -56,7 +68,7 @@ function SearchResults() {
 				retailerId: 1,
 				origin: originKey,
 				destination: destinationKey,
-				departure: "05-03-2022",
+				departure: "20-03-2022",
 				noOfPassengers: noOfPassengers,
 			})
 			.then((response) => {
@@ -85,18 +97,55 @@ function SearchResults() {
             <span className="val-tg-txt">{location.state.destination}</span>
 
             <img className="val-tg-img cal-img" src={calendar} />
-            <span className="val-tg-date">05-03-2022</span>
+            <span className="val-tg-date">20-03-2022</span>
           </div>
           <div className="val-btns">
-            <button className="val-tg-btn">
+            <button className="val-tg-btn" style={{cursor: 'pointer'}}
+ onClick={() => {
+							navigate("/", {
+								state: {
+									origin: origin,
+									destination: destination,
+									originKey: originKey,
+									destinationKey: destinationKey,
+									departure: departure,
+									noOfPassengers: noOfPassengers,
+								},
+							});
+						}}
+>
               <span className="val-tg-bt-txt">Modify Search</span>
+
             </button>
-            <button className="val-tg-btn">
+            <button className="val-tg-btn" style={{cursor: 'pointer'}}>
               <span className="val-tg-bt-txt">Bus Matrix</span>
             </button>
-            <button className="val-tg-btn">
-              <span className="val-tg-bt-txt">Action</span>
-            </button>
+
+ <Button
+style={{backgroundColor: '#efefef', paddingLeft: 24+'px', paddingRight: 24+'px',borderRadius: 8+'px'}}
+className="actionBtn" 
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+         <span className="val-tg-bt-txt" style={{textTransform: 'none'}}>Action</span>
+      </Button>
+           
+<Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Comission Fee</MenuItem>
+        <MenuItem onClick={handleClose}>Specific Busses</MenuItem>
+      </Menu>
+           
           </div>
         </div>
         <div className="trip-bar">
@@ -272,9 +321,28 @@ function SearchResults() {
                 ))}
               </tbody>
             </table>
+
           </div>
+
         </div>
+
       </div>
+<button className="val-tg-btn" style={{float: 'right', marginRight: 70, marginTop:7, cursor: 'pointer'}}
+ onClick={() => {
+							navigate("searchResults", {
+								state: {
+									origin: origin,
+									destination: destination,
+									originKey: originKey,
+									destinationKey: destinationKey,
+									departure: departure,
+									noOfPassengers: noOfPassengers,
+								},
+							});
+						}}
+>
+              <span className="val-tg-bt-txt">Proceed</span>
+            </button>
     </div>
   );
 }

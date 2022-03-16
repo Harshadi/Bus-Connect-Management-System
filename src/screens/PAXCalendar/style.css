@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+
+.sub{
+background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 16px;
+    width: 100%;
+    padding-top: 32px;
+    padding-bottom: 350px;
+    height: 90%;
+}
+
+.outer{
+display: block;
+    margin: auto;
+    font-family: "Source Sans Pro", sans-serif;
+    height: 712px;
+    background: #f5f5f5 0% 0% no-repeat padding-box;
+    opacity: 1;
+
+}
+
+.monthTitle{
+    font-family: "Source Sans Pro", sans-serif;
+height: 22px;
+    text-align: left;
+    font: normal normal 600 16px/22px Source Sans Pro;
+    letter-spacing: 0px;
+    color: #483191;
+    opacity: 1;
+margin-left:20px;
+margin-bottom: 7px
+}
+
+.selectField{
+top: 247px;
+    margin-left:20px;
+    width: 209px;
+    height: 36px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    opacity: 1;
+padding-left: 10px;
+    font: normal normal 600 16px/22px Source Sans Pro;
+}
+
+.searchBtn{
+    background: #483191 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+    top: 240px;
+    left: 538px;
+    width: 149px;
+    height: 36px;
+    border: none;
+}
+
+.btnClass{
+    display: block;
+    margin-top: 28px;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+.searchBtn{
+    height: 40px;
+    background: #483191 0% 0% no-repeat padding-box;
+    border: none;
+    border-radius: 8px;
+    opacity: 1;
+    width: 310px;
+    margin-left: 20px;
+}
+
+.flex{
+display: flex
+}
+
+.flex1{
+
+}
+
+.flex2{
+
+}
